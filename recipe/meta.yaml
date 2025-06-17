@@ -16,12 +16,13 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
+    - python >={{ python_min }}
     - docstring_parser
     - docutils
-    - python >=3.8
 
 test:
   imports:
@@ -29,6 +30,7 @@ test:
   commands:
     - pip check
   requires:
+    - python {{ python_min }}
     - pip
 
 about:
