@@ -1,5 +1,5 @@
 {% set name = "cltoolbox" %}
-{% set version = "4.0.0" %}
+{% set version = "4.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cltoolbox-{{ version }}.tar.gz
-  sha256: 180fb9095f58a4afc821ea9a4468dd4ed8e4a0a75fe00c923f05a40956e7f260
+  sha256: 57ab81e975930cfa20d8c729de3f64b47213e7d21ef60b53f699ed6fc8f13116
 
 build:
   noarch: python
