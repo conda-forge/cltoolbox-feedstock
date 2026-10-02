@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: cltoolbox
+  version: "4.0.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 6be1d755c1628695d69bd42fbcc64feca1bbf3f2614d8d60518c7b7002c5fbe9
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - docstring_parser
+    - docutils
+
+tests:
+  - python:
+      imports:
+        - cltoolbox
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+
+about:
+  summary: Python library for creating and manipulating CLIs
+  license: BSD-3-Clause AND MIT
+  license_file: LICENSE.txt
+  homepage: https://pypi.org/project/cltoolbox/
+
+extra:
+  recipe-maintainers:
+    - timcera
