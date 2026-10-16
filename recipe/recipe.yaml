@@ -1,29 +1,30 @@
 schema_version: 1
 
 context:
-  name: cltoolbox
-  version: "4.0.2"
+  name: "cltoolbox"
+  version: "4.0.4"
 
 package:
-  name: ${{ name|lower }}
+  name: ${{ name }}
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 6be1d755c1628695d69bd42fbcc64feca1bbf3f2614d8d60518c7b7002c5fbe9
+  url: https://pypi.org/packages/source/c/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 38b12636f0ea2fdb4109449515a92e9ec53b8a47f1a248ba545b210944bf6e4c
 
 build:
   number: 1
   noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv --no-deps
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python ${{ python_min }}.*
+    - setuptools >=80
+    - setuptools-scm >=8
     - pip
-    - setuptools
   run:
-    - python >=${{ python_min }}
+    - python >=3.10
     - docstring_parser
     - docutils
 
@@ -39,8 +40,10 @@ tests:
 about:
   summary: Python library for creating and manipulating CLIs
   license: BSD-3-Clause AND MIT
-  license_file: LICENSE.txt
-  homepage: https://pypi.org/project/cltoolbox/
+  license_file:
+    - LICENSE.txt
+    - src/${{ name }}/python_rst2ansi/LICENSE
+  homepage: https://pypi.org/project/${{ name }}/
 
 extra:
   recipe-maintainers:
